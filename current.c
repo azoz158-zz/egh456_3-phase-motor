@@ -35,7 +35,6 @@ void SetCurrentUpperLimit(Current_Params * params, int16_t limit){
 
 void SetCurrentAverage(Current_Params * params){
     uint8_t index = 0;
-    //params->currentsensor.avg = 0;
     for (; index < (sizeof(params->currentsensor.sample)/sizeof(uint32_t)); index++){
         params->currentsensor.avg += params->currentsensor.sample[index];
     }
