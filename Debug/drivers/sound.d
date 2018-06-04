@@ -12,7 +12,7 @@ drivers/sound.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.
 drivers/sound.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/rom.h
 drivers/sound.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/sysctl.h
 drivers/sound.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/timer.h
-drivers/sound.obj: H:/EGH456/i2ctmp006_DK_TM4C129X_TImine/drivers/sound.h
+drivers/sound.obj: H:/assignment/i2ctmp006_DK_TM4C129X_TImine/drivers/sound.h
 
 ../drivers/sound.c: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdbool.h: 
@@ -26,4 +26,4 @@ C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/int
 C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/rom.h: 
 C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/sysctl.h: 
 C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/timer.h: 
-H:/EGH456/i2ctmp006_DK_TM4C129X_TImine/drivers/sound.h: 
+H:/assignment/i2ctmp006_DK_TM4C129X_TImine/drivers/sound.h: 

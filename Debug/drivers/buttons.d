@@ -11,7 +11,7 @@ drivers/buttons.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.
 drivers/buttons.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/rom_map.h
 drivers/buttons.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/pin_map.h
 drivers/buttons.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/gpio.h
-drivers/buttons.obj: H:/EGH456/i2ctmp006_DK_TM4C129X_TImine/drivers/buttons.h
+drivers/buttons.obj: H:/assignment/i2ctmp006_DK_TM4C129X_TImine/drivers/buttons.h
 
 ../drivers/buttons.c: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdbool.h: 
@@ -24,4 +24,4 @@ C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/rom
 C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/rom_map.h: 
 C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/pin_map.h: 
 C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/gpio.h: 
-H:/EGH456/i2ctmp006_DK_TM4C129X_TImine/drivers/buttons.h: 
+H:/assignment/i2ctmp006_DK_TM4C129X_TImine/drivers/buttons.h: 

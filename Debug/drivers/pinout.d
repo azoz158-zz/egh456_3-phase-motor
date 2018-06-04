@@ -10,7 +10,7 @@ drivers/pinout.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1
 drivers/pinout.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/pin_map.h
 drivers/pinout.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/rom.h
 drivers/pinout.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/sysctl.h
-drivers/pinout.obj: H:/EGH456/i2ctmp006_DK_TM4C129X_TImine/drivers/pinout.h
+drivers/pinout.obj: H:/assignment/i2ctmp006_DK_TM4C129X_TImine/drivers/pinout.h
 
 ../drivers/pinout.c: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdbool.h: 
@@ -22,4 +22,4 @@ C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/gpi
 C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/pin_map.h: 
 C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/rom.h: 
 C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/sysctl.h: 
-H:/EGH456/i2ctmp006_DK_TM4C129X_TImine/drivers/pinout.h: 
+H:/assignment/i2ctmp006_DK_TM4C129X_TImine/drivers/pinout.h: 

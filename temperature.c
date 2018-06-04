@@ -16,8 +16,6 @@ void i2c_init(){
     GPIOPinConfigure(GPIO_PL0_I2C2SDA);
     GPIOPinTypeI2CSCL(GPIO_PORTL_BASE, GPIO_PIN_1);
     GPIOPinTypeI2C(GPIO_PORTL_BASE, GPIO_PIN_0);
-
-
 }
 
 // Takes 16 bit register address and returns the value in the register
