@@ -16,7 +16,7 @@ BIOS_INC  = -I"C:/ti/tirtos_tivac_2_16_00_08/products/bios_6_45_01_29/packages/"
 
 TARGET_INC = -I"C:/ti/tirtos_tivac_2_16_00_08/products/bios_6_45_01_29/packages/"
 
-INCS = $(BIOS_INC) $(TARGET_INC)  --include_path="H:/assignment/i2ctmp006_DK_TM4C129X_TImine" --include_path="H:/assignment/i2ctmp006_DK_TM4C129X_TImine" --include_path="C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b" --include_path="C:/ti/tirtos_tivac_2_16_00_08/products/bios_6_45_01_29/packages/ti/sysbios/posix" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include" 
+INCS = $(BIOS_INC) $(TARGET_INC)  --include_path="H:/WEEK2/TivaWare_C_Series-2.1.3.156/examples/boards/dk-tm4c129x/egh456" --include_path="H:/WEEK2/TivaWare_C_Series-2.1.3.156/examples/boards/dk-tm4c129x/egh456" --include_path="C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b" --include_path="C:/ti/tirtos_tivac_2_16_00_08/products/bios_6_45_01_29/packages/ti/sysbios/posix" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include" 
 
 CC = C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/bin/armcl -c $(CCOPTS) -I C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include
 ASM = C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/bin/armcl -c $(CCOPTS) -I C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include

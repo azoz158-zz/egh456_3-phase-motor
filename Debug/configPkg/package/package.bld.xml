@@ -7,7 +7,7 @@
         <srcFile name="package/cfg/i2ctmp006_pem4f.c"/>
     </sources>
     <configscripts>
-        <srcFile name="H:/assignment/i2ctmp006_DK_TM4C129X_TImine/i2ctmp006.cfg"/>
+        <srcFile name="H:/WEEK2/TivaWare_C_Series-2.1.3.156/examples/boards/dk-tm4c129x/egh456/i2ctmp006.cfg"/>
     </configscripts>
     <makefiles>
         <srcFile name="package.mak" src="package.bld"/>
@@ -44,7 +44,7 @@
         isPartial="false"
         xCfgScript="package/cfg/i2ctmp006_pem4f.cfg"
         xCfgPrefix="package/cfg/i2ctmp006_pem4f"
-        cfgScript="H:/assignment/i2ctmp006_DK_TM4C129X_TImine/i2ctmp006.cfg"
+        cfgScript="H:/WEEK2/TivaWare_C_Series-2.1.3.156/examples/boards/dk-tm4c129x/egh456/i2ctmp006.cfg"
         cfgArgs="null"
         />
     </configurations>
@@ -56,7 +56,7 @@
         profile="release"
         xCfgScript="package/cfg/i2ctmp006_pem4f.cfg"
         xCfgPrefix="package/cfg/i2ctmp006_pem4f"
-        cfgScript="H:/assignment/i2ctmp006_DK_TM4C129X_TImine/i2ctmp006.cfg"
+        cfgScript="H:/WEEK2/TivaWare_C_Series-2.1.3.156/examples/boards/dk-tm4c129x/egh456/i2ctmp006.cfg"
         cfgArgs="null"
         />
     </executables>

@@ -17,7 +17,7 @@ drivers/touch.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.
 drivers/touch.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/timer.h
 drivers/touch.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/grlib/grlib.h
 drivers/touch.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/grlib/widget.h
-drivers/touch.obj: H:/assignment/i2ctmp006_DK_TM4C129X_TImine/drivers/touch.h
+drivers/touch.obj: H:/WEEK2/TivaWare_C_Series-2.1.3.156/examples/boards/dk-tm4c129x/egh456/drivers/touch.h
 
 ../drivers/touch.c: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdbool.h: 
@@ -36,4 +36,4 @@ C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/sys
 C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/timer.h: 
 C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/grlib/grlib.h: 
 C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/grlib/widget.h: 
-H:/assignment/i2ctmp006_DK_TM4C129X_TImine/drivers/touch.h: 
+H:/WEEK2/TivaWare_C_Series-2.1.3.156/examples/boards/dk-tm4c129x/egh456/drivers/touch.h: 

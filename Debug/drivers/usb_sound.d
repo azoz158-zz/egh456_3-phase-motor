@@ -5,7 +5,7 @@ drivers/usb_sound.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/
 drivers/usb_sound.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdint.h
 drivers/usb_sound.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/inc/hw_types.h
 drivers/usb_sound.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/inc/hw_memmap.h
-drivers/usb_sound.obj: H:/assignment/i2ctmp006_DK_TM4C129X_TImine/drivers/usb_sound.h
+drivers/usb_sound.obj: H:/WEEK2/TivaWare_C_Series-2.1.3.156/examples/boards/dk-tm4c129x/egh456/drivers/usb_sound.h
 drivers/usb_sound.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/gpio.h
 drivers/usb_sound.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/sysctl.h
 drivers/usb_sound.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/udma.h
@@ -20,7 +20,7 @@ C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdbool.h:
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdint.h: 
 C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/inc/hw_types.h: 
 C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/inc/hw_memmap.h: 
-H:/assignment/i2ctmp006_DK_TM4C129X_TImine/drivers/usb_sound.h: 
+H:/WEEK2/TivaWare_C_Series-2.1.3.156/examples/boards/dk-tm4c129x/egh456/drivers/usb_sound.h: 
 C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/gpio.h: 
 C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/sysctl.h: 
 C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/udma.h: 

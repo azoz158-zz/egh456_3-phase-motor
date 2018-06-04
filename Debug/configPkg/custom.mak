@@ -7,5 +7,5 @@
 #       or equal to the generated config header
 #
 linker.cmd: package/cfg/i2ctmp006_pem4f.xdl
-	$(SED) 's"^\"\(package/cfg/i2ctmp006_pem4fcfg.cmd\)\"$""\"H:/assignment/i2ctmp006_DK_TM4C129X_TImine/Debug/configPkg/\1\""' package/cfg/i2ctmp006_pem4f.xdl > $@
+	$(SED) 's"^\"\(package/cfg/i2ctmp006_pem4fcfg.cmd\)\"$""\"H:/WEEK2/TivaWare_C_Series-2.1.3.156/examples/boards/dk-tm4c129x/egh456/Debug/configPkg/\1\""' package/cfg/i2ctmp006_pem4f.xdl > $@
 	-$(SETDATE) -r:max package/cfg/i2ctmp006_pem4f.h compiler.opt compiler.opt.defs

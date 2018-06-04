@@ -1619,7 +1619,7 @@ __FAR__ const xdc_SizeT ti_sysbios_knl_Task_Module_State_terminatedQ__O = offset
  *  Define absolute path prefix for this executable's
  *  configuration generated files.
  */
-xdc__META(__ASM__, "@(#)__ASM__ = H:/assignment/i2ctmp006_DK_TM4C129X_TImine/Debug/configPkg/package/cfg/i2ctmp006_pem4f");
+xdc__META(__ASM__, "@(#)__ASM__ = H:/WEEK2/TivaWare_C_Series-2.1.3.156/examples/boards/dk-tm4c129x/egh456/Debug/configPkg/package/cfg/i2ctmp006_pem4f");
 
 /*
  *  ======== __ISA__ ========
