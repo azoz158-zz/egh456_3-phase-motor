@@ -10,7 +10,7 @@
 	<rts value="libc.a"/>
 	<createSlaveProjects value=""/>
 	<templateProperties value="id=com_ti_rtsc_tirtostivac_example_7.projectspec.i2ctmp006_DK_TM4C129X_TI,type=rtsc,products=com.ti.rtsc.TIRTOStivac,xdcToolsVersion=3_32_00_06_core,target=ti.targets.arm.elf.M4F,platform=ti.platforms.tiva:TM4C129XNCZAD,buildProfile=release,isHybrid=true,configuroOptions= --compileOptions &quot;${COMPILER_FLAGS} &quot;,"/>
-	<origin value="C:\ti\tirtos_tivac_2_16_00_08\resources\dk_tm4C129XEvaluationKit\driverExamples\tiDriverExamples\i2CExamples\com_ti_rtsc_tirtostivac_example_7.projectspec"/>
+	<origin value="H:/assignment/egh456"/>
 	<filesToOpen value=""/>
 	<connection value="common/targetdb/connections/Stellaris_ICDI_Connection.xml"/>
 	<isTargetManual value="false"/>
