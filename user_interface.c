@@ -55,20 +55,41 @@ static char * getCurrentDateTime()
     return t;
 }
 
+static void litLED(uint8_t speed, uint8_t status)
+{
+    if (speed > 0){
+        GPIO_write(Board_LED0, Board_LED_ON);
+        GPIO_write(Board_LED1, Board_LED_OFF);
+        GPIO_write(Board_LED2, Board_LED_OFF);
+    }
+    else{
+        if (status == MOTOR_IDLE){
+            GPIO_write(Board_LED0, Board_LED_OFF);
+            GPIO_write(Board_LED1, Board_LED_ON);
+            GPIO_write(Board_LED2, Board_LED_OFF);
+        }
+        else{
+            GPIO_write(Board_LED0, Board_LED_OFF);
+            GPIO_write(Board_LED1, Board_LED_OFF);
+            GPIO_write(Board_LED2, Board_LED_ON);
+        }
+    }
+}
+
 static void ChangeMotorState(uint8_t newstate, uint8_t * state)
 {
     switch(newstate)
     {
-        case 1:
+        case MOTOR_IDLE:
             PushButtonTextSet(&g_sMotorState, "    Motor is in idle state    ");
             break;
-        case 2:
+        case MOTOR_STARTING:
             PushButtonTextSet(&g_sMotorState, "  Motor is in Starting state  ");
             break;
-        case 3:
+        case MOTOR_RUNNING:
             PushButtonTextSet(&g_sMotorState, "   Motor is in Running state  ");
             break;
-        case 4:
+        case MOTOR_ESTOPPING:
             PushButtonTextSet(&g_sMotorState, " Motor is in E-Stopping state ");
             break;
     }
@@ -248,18 +269,25 @@ static void DrawHomeScreen(tContext *sContext, UI_Params *params, Motor_Params *
             {
                 if (motor_button)
                 {
-                    MotorRotate(motorParams);
+
+                    MotorWakeUp(motorParams);
+
+                    litLED(motorParams->current_speed, motorParams->state);
                     MotorStateChange(motorParams, EVENT_SETSPEED);
+                    //MotorRotate(motorParams);
                     PushButtonTextSet(&g_sMotorStartStop, "Stop Motor");
                     motor_button = 0;
+                    MotorRotate(motorParams);
                 }
                 else{
                     if (motorParams->state == MOTOR_ESTOPPING){
                         motor_button = 1;
                         PushButtonTextSet(&g_sMotorStartStop, "Start Motor");
+
                     }
+                    MotorEmergencyStop(motorParams);
                     MotorStateChange(motorParams, EVENT_BRAKE);
-                    //motorParams->desired_speed = 0;
+                    litLED(motorParams->current_speed, motorParams->state);
                 }
                 WidgetPaint(WIDGET_ROOT);
             }
@@ -276,7 +304,7 @@ static void DrawHomeScreen(tContext *sContext, UI_Params *params, Motor_Params *
             ChangeMotorState(motorParams->state, &(params->data.motor_state));
                 sprintf(buffer,"  Desired Speed: %02d revs/s   ", motorParams->desired_speed);
         GrStringDraw(sContext, buffer, 31, 35, 75, 1);
-                sprintf(buffer,"  Actual Speed: %02d revs/s    ", motorParams->actual_speed);
+                sprintf(buffer,"  Actual Speed: %02d revs/s    ", motorParams->average);
         GrStringDraw(sContext, buffer, 31, 35, 100, 1);
         sprintf(buffer,"Temperature: %.2f degree Celsius", tempParams->avg);
         GrStringDraw(sContext, buffer, 31, 35, 125, 1);
@@ -325,7 +353,7 @@ static void DrawSetting1Screen(tContext * sContext, UI_Params * params,Temp_Para
     uint8_t button = OnButtonPress();
     updateSettingOptions(params->screen_option, SCREEN_2);
     char s[20];
-    static int16_t temp_limit=0;
+    int16_t temp_limit=tempParams->upper_limit;
     while(1)
     {
         tempParams->current_temp = getObjTemp();
@@ -341,10 +369,12 @@ static void DrawSetting1Screen(tContext * sContext, UI_Params * params,Temp_Para
             switch (params->screen_option)
             {
                 case 0:
-                    temp_limit++;
+                    if (temp_limit < 85)
+                        temp_limit++;
                     break;
                 case 1:
-                    temp_limit--;
+                    if (temp_limit > 10)
+                        temp_limit--;
                     break;
                 case 2:
                     //save temp
@@ -412,6 +442,7 @@ static void DrawSetting2Screen(tContext * sContext, UI_Params * params, Motor_Pa
                         motor_button = 1;
                         PushButtonTextSet(&g_sMotorStartStop, "Start Motor");
                         MotorStateChange(motorParams, EVENT_SETSPEED_TO_ZERO);
+                        //set desired speed = 0
                     }
                     motorParams->desired_speed = speed;
                     break;
@@ -425,14 +456,14 @@ static void DrawSetting2Screen(tContext * sContext, UI_Params * params, Motor_Pa
     }
 }
 
-static void DrawSetting3Screen(tContext * sContext, UI_Params * params,Temp_Params *tempParams)
+static void DrawSetting3Screen(tContext * sContext, UI_Params * params,Temp_Params *tempParams, Current_Params *currentParams)
 {
     FrameDraw(sContext, "Set Current Limit");
     WidgetPaint((tWidget *) &g_sSettingPage3);
     uint8_t button = OnButtonPress();
     updateSettingOptions(params->screen_option, SCREEN_4);
-    char s[8];
-    static int16_t current_limit=0;
+    char s[10];
+    int16_t current_limit=currentParams->upper_limit;
     while(1)
     {
         tempParams->current_temp = getObjTemp();
@@ -448,10 +479,12 @@ static void DrawSetting3Screen(tContext * sContext, UI_Params * params,Temp_Para
             switch (params->screen_option)
             {
                 case 0:
-                    current_limit++;
+                    if (current_limit < 5000)
+                        current_limit++;
                     break;
                 case 1:
-                    current_limit--;
+                    if (current_limit > 0)
+                        current_limit--;
                     break;
                 case 2:
                     //save current
@@ -460,11 +493,11 @@ static void DrawSetting3Screen(tContext * sContext, UI_Params * params,Temp_Para
                     break;
             }
         }
-        sprintf(s, "%04d mA",current_limit);
+        sprintf(s, "%05d mA",current_limit);
         if (params->screen == SCREEN_1)
             break;
         WidgetMessageQueueProcess();
-        GrStringDraw(sContext, s, 7, 130, 90, 1);
+        GrStringDraw(sContext, s, 10, 130, 90, 1);
     }
 }
 
@@ -594,7 +627,7 @@ void UserInterfaceDraw(UI_Params * params, tContext * sContext, Motor_Params * m
             DrawSetting2Screen(sContext, params, motorParams, tempParams);
             break;
         case SCREEN_4:
-            DrawSetting3Screen(sContext, params, tempParams);
+            DrawSetting3Screen(sContext, params, tempParams, currentParams);
             break;
         case SCREEN_5:
             DrawGraph1Screen(sContext, params, tempParams);

@@ -179,6 +179,7 @@ float getObjTemp(){
     int16_t upperRAM = 0;
 
     int16_t sixRAM = EEPROM_Read16(RAM_6);
+    //System_printf("%f",sixRAM);
     int16_t nineRAM = EEPROM_Read16(RAM_9);
 
     int cyclePosition = getCyclePosition();
@@ -256,8 +257,18 @@ void TemperatureInit(Temp_Params * params)
 {
     i2c_setup();
     memset(params, 0, sizeof(Temp_Params));
+    params->upper_limit = 40;
 }
 
+bool isTemperatureWithinLimit(Temp_Params * params){
+    bool withinLimit = false;
+
+    if(params->avg <= params->upper_limit){
+        withinLimit = true;
+    }
+
+    return withinLimit;
+}
 
 void SetTemperatureUpperLimit(Temp_Params * params, int16_t limit)
 {

@@ -81,6 +81,10 @@ typedef struct Speed{
     int16_t data[100];
 }Speed;
 
+void motorWakeup();
+
+void motorEmergencyStop();
+
 void configurePWMSignal();
 
 void configureHallSensor();

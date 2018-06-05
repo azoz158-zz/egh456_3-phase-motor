@@ -209,6 +209,7 @@ i2ctmp006.obj: ../DK_TM4C129X.h
 i2ctmp006.obj: ../motordriver_sensorboard.h
 i2ctmp006.obj: ../motor.h
 i2ctmp006.obj: ../user_interface.h
+i2ctmp006.obj: C:/ti/tirtos_tivac_2_16_00_08/products/tidrivers_tivac_2_16_00_08/packages/ti/drivers/GPIO.h
 i2ctmp006.obj: ../interface_button.h
 i2ctmp006.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/gpio.h
 i2ctmp006.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/sysctl.h
@@ -238,7 +239,6 @@ i2ctmp006.obj: ../temperature.h
 i2ctmp006.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/math.h
 i2ctmp006.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/string.h
 i2ctmp006.obj: C:/ti/xdctools_3_32_02_25_core/packages/xdc/runtime/System.h
-i2ctmp006.obj: C:/ti/tirtos_tivac_2_16_00_08/products/tidrivers_tivac_2_16_00_08/packages/ti/drivers/GPIO.h
 i2ctmp006.obj: C:/ti/tirtos_tivac_2_16_00_08/products/tidrivers_tivac_2_16_00_08/packages/ti/drivers/I2C.h
 i2ctmp006.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stddef.h
 i2ctmp006.obj: C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/inc/hw_gpio.h
@@ -452,6 +452,7 @@ C:/ti/tirtos_tivac_2_16_00_08/products/bios_6_45_01_29/packages/ti/sysbios/hal/p
 ../motordriver_sensorboard.h: 
 ../motor.h: 
 ../user_interface.h: 
+C:/ti/tirtos_tivac_2_16_00_08/products/tidrivers_tivac_2_16_00_08/packages/ti/drivers/GPIO.h: 
 ../interface_button.h: 
 C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/gpio.h: 
 C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/sysctl.h: 
@@ -481,7 +482,6 @@ C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/driverlib/tim
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/math.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/string.h: 
 C:/ti/xdctools_3_32_02_25_core/packages/xdc/runtime/System.h: 
-C:/ti/tirtos_tivac_2_16_00_08/products/tidrivers_tivac_2_16_00_08/packages/ti/drivers/GPIO.h: 
 C:/ti/tirtos_tivac_2_16_00_08/products/tidrivers_tivac_2_16_00_08/packages/ti/drivers/I2C.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stddef.h: 
 C:/ti/tirtos_tivac_2_16_00_08/products/TivaWare_C_Series-2.1.1.71b/inc/hw_gpio.h: 

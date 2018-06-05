@@ -50,7 +50,9 @@ typedef struct Motor_Params{
     uint8_t state;
     uint8_t actual_speed;
     uint8_t desired_speed;
-    uint8_t sample[10];
+    uint8_t average;
+    float current_speed;
+    uint8_t sample[5];
     Motor motor;
 }Motor_Params;
 
@@ -65,11 +67,18 @@ typedef struct Motor_Params{
  *      pwm_frequency:  Frequency of PWM signal for the motor.
  *
  */
+
+void SetSpeedAverage(Motor_Params * param);
+
 void MotorInit(Motor_Params * param, uint32_t system_clock, int32_t pwm_frequecy);
 
-uint8_t MotorRotate(Motor_Params * param);
+void MotorRotate(Motor_Params * param);
 
-void MotorAdjustSpeed(Motor_Params * param);
+void MotorEmergencyStop(Motor_Params * param);
+
+void MotorWakeUp(Motor_Params * param);
+
+void MotorAdjustSpeed(Motor_Params * param);//change motor state here according to speed
 
 uint8_t MotorFaultCondition(Motor_Params * param, char *feedback);
 

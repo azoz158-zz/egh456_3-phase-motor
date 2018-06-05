@@ -22,22 +22,53 @@ void MotorInit(Motor_Params * param, uint32_t system_clock, int32_t pwm_frequecy
     initPWMSignal(system_clock, pwm_frequecy, (Motor *)&(param->motor));
     param->state = MOTOR_IDLE;
     param->actual_speed = 0;
+    param->current_speed = 0.0;
     //System_printf("%d %d",param->motor.duty_cycle, param->motor.period);
-    param->desired_speed = ((float)param->motor.duty_cycle/(float)param->motor.period)*MAX_MOTOR_SPEED;
-    MotorRotate(param);
+    param->desired_speed = 0;// ((float)param->motor.duty_cycle/(float)param->motor.period)*MAX_MOTOR_SPEED;
+    //MotorRotate(param);
 }
 
-uint8_t MotorRotate(Motor_Params * param)
+void MotorEmergencyStop(Motor_Params * param)
 {
-    return setPWMSignalDutyCycle((Motor *)&(param->motor));
+    param->current_speed = 0.0;
+    param->desired_speed = 0;
+    motorEmergencyStop();
+}
+
+void MotorWakeUp(Motor_Params * param)
+{
+    param->desired_speed = 37;
+    param->current_speed = 37/2;
+    motorWakeup();
+}
+
+void SetSpeedAverage(Motor_Params * param)
+{
+    uint8_t index = 0;
+        for (; index < (sizeof(param->sample)/sizeof(uint8_t)); index++){
+            param->average += param->sample[index];
+        }
+        param->average = param->average / (sizeof(param->sample)/sizeof(uint8_t));
+}
+
+void MotorRotate(Motor_Params * param)
+{
+    setPWMSignalDutyCycle((Motor *)&(param->motor));
     //set new speed here;
+    uint8_t speed = (uint8_t)param->current_speed;
+    if (speed > param->desired_speed)
+        param->current_speed -= 0.005;
+    else if (speed < param->desired_speed)
+        param->current_speed += 0.005;
+    else
+        MotorStateChange(param, EVENT_SETSPEED);
     //this is after just no delay in sending new pwm signal
 }
 
 void MotorAdjustSpeed(Motor_Params * param)
 {
-    uint8_t error = param->desired_speed - param->actual_speed;
-    adjustDutyCycle(&(param->motor), error, param->desired_speed);
+    uint8_t error = (uint8_t)param->current_speed - param->actual_speed;
+    adjustDutyCycle(&(param->motor), error, (uint8_t)param->current_speed);
 }
 
 uint8_t MotorFaultCondition(Motor_Params *param, char * feedback)

@@ -8,6 +8,7 @@ user_interface.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/std
 user_interface.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/time.h
 user_interface.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/abi_prefix.h
 user_interface.obj: ../user_interface.h
+user_interface.obj: C:/ti/tirtos_tivac_2_16_00_08/products/tidrivers_tivac_2_16_00_08/packages/ti/drivers/GPIO.h
 user_interface.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdint.h
 user_interface.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdbool.h
 user_interface.obj: ../motor.h
@@ -116,7 +117,6 @@ user_interface.obj: C:/ti/xdctools_3_32_02_25_core/packages/xdc/runtime/IInstanc
 user_interface.obj: C:/ti/xdctools_3_32_02_25_core/packages/xdc/runtime/IGateProvider.h
 user_interface.obj: C:/ti/xdctools_3_32_02_25_core/packages/xdc/runtime/package/System_SupportProxy.h
 user_interface.obj: C:/ti/xdctools_3_32_02_25_core/packages/xdc/runtime/package/System_Module_GateProxy.h
-user_interface.obj: C:/ti/tirtos_tivac_2_16_00_08/products/tidrivers_tivac_2_16_00_08/packages/ti/drivers/GPIO.h
 user_interface.obj: C:/ti/tirtos_tivac_2_16_00_08/products/tidrivers_tivac_2_16_00_08/packages/ti/drivers/I2C.h
 user_interface.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stddef.h
 user_interface.obj: ../Board.h
@@ -130,6 +130,7 @@ C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdarg.h:
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/time.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/abi_prefix.h: 
 ../user_interface.h: 
+C:/ti/tirtos_tivac_2_16_00_08/products/tidrivers_tivac_2_16_00_08/packages/ti/drivers/GPIO.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdint.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stdbool.h: 
 ../motor.h: 
@@ -238,7 +239,6 @@ C:/ti/xdctools_3_32_02_25_core/packages/xdc/runtime/IInstance.h:
 C:/ti/xdctools_3_32_02_25_core/packages/xdc/runtime/IGateProvider.h: 
 C:/ti/xdctools_3_32_02_25_core/packages/xdc/runtime/package/System_SupportProxy.h: 
 C:/ti/xdctools_3_32_02_25_core/packages/xdc/runtime/package/System_Module_GateProxy.h: 
-C:/ti/tirtos_tivac_2_16_00_08/products/tidrivers_tivac_2_16_00_08/packages/ti/drivers/GPIO.h: 
 C:/ti/tirtos_tivac_2_16_00_08/products/tidrivers_tivac_2_16_00_08/packages/ti/drivers/I2C.h: 
 C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.7.LTS/include/stddef.h: 
 ../Board.h: 

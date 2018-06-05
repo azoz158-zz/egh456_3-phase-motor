@@ -88,6 +88,7 @@ Current_Params currentParams;
 Temp_Params tempParams;
 volatile uint32_t samples = 0;
 
+
 extern tCanvasWidget g_sBackground;
 extern tCanvasWidget g_sMenuPage;
 extern tCanvasWidget g_sSettingPage1;
@@ -398,33 +399,33 @@ int main()
 
 void hallInterruptFxn(UArg arg)
 {
+
     uint32_t timer_5 = TimerValueGet(TIMER5_BASE, TIMER_A);
 
     if (HWREG(GPIO_PORTL_BASE|GPIO_O_RIS) & GPIO_PIN_3){
         HWREG(GPIO_PORTL_BASE|GPIO_O_ICR) = GPIO_PIN_3;
-        if (HWREG(GPIO_PORTL_BASE+(GPIO_O_DATA + (GPIO_PIN_3 << 2))))
+      /*  if (HWREG(GPIO_PORTL_BASE+(GPIO_O_DATA + (GPIO_PIN_3 << 2))))
             motorParams.motor.hall_sensor_state[0]=1;
         else
-            motorParams.motor.hall_sensor_state[0]=0;
+            motorParams.motor.hall_sensor_state[0]=0;*/
     }
-    if (HWREG(GPIO_PORTP_BASE|GPIO_O_RIS) & GPIO_PIN_4)
-        {
-            HWREG(GPIO_PORTP_BASE|GPIO_O_ICR) = GPIO_PIN_4;
-            if (HWREG(GPIO_PORTP_BASE+(GPIO_O_DATA + (GPIO_PIN_4 << 2))))
+    if (HWREG(GPIO_PORTP_BASE|GPIO_O_RIS) & GPIO_PIN_4){
+        HWREG(GPIO_PORTP_BASE|GPIO_O_ICR) = GPIO_PIN_4;
+       /*     if (HWREG(GPIO_PORTP_BASE+(GPIO_O_DATA + (GPIO_PIN_4 << 2))))
                 motorParams.motor.hall_sensor_state[1]=1;
             else
-                motorParams.motor.hall_sensor_state[1]=0;
-        }
-        if (HWREG(GPIO_PORTP_BASE|GPIO_O_RIS) & GPIO_PIN_5){
-            HWREG(GPIO_PORTP_BASE|GPIO_O_ICR) = GPIO_PIN_5;
-            if (HWREG(GPIO_PORTP_BASE+(GPIO_O_DATA + (GPIO_PIN_5 << 2))))
+                motorParams.motor.hall_sensor_state[1]=0;*/
+    }
+    if (HWREG(GPIO_PORTP_BASE|GPIO_O_RIS) & GPIO_PIN_5){
+        HWREG(GPIO_PORTP_BASE|GPIO_O_ICR) = GPIO_PIN_5;
+         /*   if (HWREG(GPIO_PORTP_BASE+(GPIO_O_DATA + (GPIO_PIN_5 << 2))))
                 motorParams.motor.hall_sensor_state[2]=1;
             else
-                motorParams.motor.hall_sensor_state[2]=0;
-        }
-    if (motorParams.state == MOTOR_STARTING || motorParams.state == MOTOR_RUNNING)
-        MotorRotate(&motorParams);
-    motorParams.actual_speed = (uint8_t) round((120000000.0/4)/(timer_5 * 16 * NUM_MOTOR_PAIR_POLES * 6));
+                motorParams.motor.hall_sensor_state[2]=0;*/
+    }
+    MotorRotate(&motorParams);
+    motorParams.actual_speed = (uint8_t) round((120000000.0)/(timer_5 * 16 * NUM_MOTOR_PAIR_POLES * 6));
+    MotorAdjustSpeed(&motorParams);
     //System_printf("Current speed %d\n",motorParams.actual_speed);
     HWREG(TIMER5_BASE + 0x00000050) = 0;
 }
@@ -444,12 +445,24 @@ void clk0Fxn(UArg arg0)
     if(samples > 4){
         SetCurrentAverage(&currentParams);
         SetTemperatureAverage(&tempParams);
+        SetSpeedAverage(&motorParams);
         //System_printf("Current in Amps = %d\n", currentParams.current);
         samples = 0;
     }else{
         currentParams.currentsensor.sample[samples] = currentParams.currentsensor.ui32CurrentValueHolder;
         tempParams.sample[samples] = tempParams.current_temp;
+        motorParams.sample[samples] = motorParams.actual_speed;
         samples++;
+    }
+    if (!isCurrentWithinLimit(&currentParams))
+    {
+        MotorEmergencyStop(&motorParams);
+        MotorStateChange(&motorParams, EVENT_BRAKE);
+    }
+    if (!isTemperatureWithinLimit(&tempParams))
+    {
+        MotorEmergencyStop(&motorParams);
+        MotorStateChange(&motorParams, EVENT_BRAKE);
     }
     System_flush();
 }
@@ -463,12 +476,7 @@ void userInterfaceFxn(UArg arg0, UArg arg1)
 
     while(1)
     {
-
         UserInterfaceDraw(&uiParams, &sContext, &motorParams, &currentParams, &tempParams);
-
-        //Task_sleep(100);
-
-        //WidgetMessageQueueProcess();
     }
 
 }

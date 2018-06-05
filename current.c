@@ -27,6 +27,7 @@ void CurrentInit(Current_Params * params){
     ADCIntClear(ADC0_BASE, 0);
     ADCIntEnable(ADC0_BASE,0);
     memset(params, 0, sizeof(Current_Params));
+    params->upper_limit = 5000;
 }
 
 void SetCurrentUpperLimit(Current_Params * params, int16_t limit){

@@ -166,7 +166,7 @@ void TemperatureInit(Temp_Params * params);
 void SetTemperatureUpperLimit(Temp_Params * params, int16_t limit);
 void SetTEmperatureAverage(Temp_Params * params);
 
-
+bool isTemperatureWithinLimit(Temp_Params * params);
 
 
 

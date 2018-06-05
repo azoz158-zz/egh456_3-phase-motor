@@ -50,8 +50,27 @@ const uint8_t RESET[6][3] =  {{1, 0, 1},
                              {1, 1, 0}};
 
 
-static void initHallSensorState(Motor *motor)
+static void readHallSensorState(Motor *motor)
 {
+
+            if (HWREG(GPIO_PORTL_BASE+(GPIO_O_DATA + (GPIO_PIN_3 << 2))))
+                motor->hall_sensor_state[0]=1;
+            else
+                motor->hall_sensor_state[0]=0;
+
+
+                if (HWREG(GPIO_PORTP_BASE+(GPIO_O_DATA + (GPIO_PIN_4 << 2))))
+                    motor->hall_sensor_state[1]=1;
+                else
+                    motor->hall_sensor_state[1]=0;
+
+
+                if (HWREG(GPIO_PORTP_BASE+(GPIO_O_DATA + (GPIO_PIN_5 << 2))))
+                    motor->hall_sensor_state[2]=1;
+                else
+                    motor->hall_sensor_state[2]=0;
+
+            /*
     if (GPIOPinRead(GPIO_PORTL_BASE, GPIO_PIN_3))
         motor->hall_sensor_state[0] = 1;
     else
@@ -65,7 +84,7 @@ static void initHallSensorState(Motor *motor)
     if (GPIOPinRead(GPIO_PORTP_BASE, GPIO_PIN_5))
         motor->hall_sensor_state[2] = 1;
     else
-        motor->hall_sensor_state[2] = 0;
+        motor->hall_sensor_state[2] = 0;*/
 }
 
 
@@ -147,7 +166,7 @@ void initPWMSignal(uint32_t system_clock, int32_t pwm_frequecy, Motor *motor)
     if (!pwm_frequecy) pwm_frequecy = PWM_FREQUENCY; //set default if 0
 
     motor->period = system_clock/pwm_frequecy;
-    motor->duty_cycle = (uint32_t) DEFAULT_DUTYCYCLE * motor->period * 1/100;
+    motor->duty_cycle = 0;//(uint32_t) DEFAULT_DUTYCYCLE * motor->period * 1/100;
 
     TimerConfigure(TIMER3_BASE, TIMER_CFG_SPLIT_PAIR|TIMER_CFG_A_PWM);
     TimerLoadSet(TIMER3_BASE, TIMER_A, motor->period);
@@ -155,7 +174,7 @@ void initPWMSignal(uint32_t system_clock, int32_t pwm_frequecy, Motor *motor)
     TimerConfigure(TIMER2_BASE, TIMER_CFG_SPLIT_PAIR|TIMER_CFG_A_PWM|TIMER_CFG_B_PWM);
     TimerLoadSet(TIMER2_BASE, TIMER_A, motor->period);
     TimerLoadSet(TIMER2_BASE, TIMER_B, motor->period);
-    TimerControlLevel(TIMER2_BASE,TIMER_A, true);
+    TimerControlLevel(TIMER2_BASE,TIMER_A, false);
     TimerControlLevel(TIMER3_BASE,TIMER_A, false);
     TimerControlLevel(TIMER2_BASE,TIMER_B, false);
 
@@ -163,9 +182,23 @@ void initPWMSignal(uint32_t system_clock, int32_t pwm_frequecy, Motor *motor)
     TimerEnable(TIMER2_BASE, TIMER_A|TIMER_B);
 
     TimerSynchronize(TIMER0_BASE, TIMER_2A_SYNC|TIMER_2B_SYNC|TIMER_3A_SYNC);
-    initHallSensorState(motor);
+    //readHallSensorState(motor);
 }
 
+void motorEmergencyStop()
+{
+    TimerControlLevel(TIMER2_BASE,TIMER_A, false);
+    TimerControlLevel(TIMER3_BASE,TIMER_A, false);
+    TimerControlLevel(TIMER2_BASE,TIMER_B, false);
+}
+void motorWakeup()
+{
+    TimerControlLevel(TIMER2_BASE,TIMER_A, false);
+    TimerControlLevel(TIMER3_BASE,TIMER_A, true);
+    TimerControlLevel(TIMER2_BASE,TIMER_B, false);
+
+
+}
 void adjustDutyCycle(Motor *motor, uint8_t error, uint8_t desired)
 {
     int16_t output = Kp *error + Ki * error;
@@ -210,6 +243,7 @@ uint8_t checkFaultCondition(Motor * motor, char *feedback)
 
 uint8_t setPWMSignalDutyCycle(Motor *motor)
 {
+    readHallSensorState(motor);
     uint8_t index = determineHallStateIndex((uint8_t *) &(motor->hall_sensor_state));
 
     if (index != OUT_OF_RANGE_INDEX)
@@ -220,7 +254,7 @@ uint8_t setPWMSignalDutyCycle(Motor *motor)
 
         TimerMatchSet(TIMER3_BASE, TIMER_A, (PWM[index][0])? motor->duty_cycle : 0);//PWM_A
         TimerMatchSet(TIMER2_BASE, TIMER_B, (PWM[index][1])? motor->duty_cycle : 0);//PWM_B
-       TimerMatchSet(TIMER2_BASE, TIMER_A, (PWM[index][2])? motor->duty_cycle : 0);//PWM_C
+        TimerMatchSet(TIMER2_BASE, TIMER_A, (PWM[index][2])? motor->duty_cycle : 0);//PWM_C
         GPIOPinWrite(GPIO_PORTA_BASE, GPIO_PIN_7, (RESET[index][0])? 0xff:0);
         GPIOPinWrite(GPIO_PORTL_BASE, GPIO_PIN_5, (RESET[index][1])? 0xff:0);
         GPIOPinWrite(GPIO_PORTL_BASE, GPIO_PIN_4, (RESET[index][2])? 0xff:0);

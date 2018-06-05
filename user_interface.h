@@ -9,7 +9,7 @@
  */
 #ifndef USER_INTERFACE_H_
 #define USER_INTERFACE_H_
-
+#include <ti/drivers/GPIO.h>
 #include <stdint.h>
 #include <stdbool.h>
 

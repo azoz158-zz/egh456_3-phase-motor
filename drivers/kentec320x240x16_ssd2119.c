@@ -607,7 +607,7 @@ Kentec320x240x16_SSD2119LineDrawH(void *pvDisplayData, int32_t i32X1,
         //
         // Write the pixel value.
         //
-        WriteData(ui32Value);
+         WriteData(ui32Value);
     }
 }
 
